@@ -79,6 +79,7 @@ class SkyscannerApi:
         self.passengers = passengers
         self.departure_date = departure_date
         self.return_date = return_date
+        self.status = ''
 
         origin_meta_data = meta_data_flight_api(origin)
         time.sleep(1)  # Api plan only allows me to make one request per second :(
@@ -89,11 +90,6 @@ class SkyscannerApi:
 
         self.origin_EntityId = origin_meta_data['data'][0]['entityId']
         self.destination_EntityId = destination_meta_data['data'][0]['entityId']
-
-    # --------------------------------------------------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------------------------------------------------
-
-    # ---------------------------------------------------------------------------------------------------------------------
 
     def flights(self):
         url = "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchFlights"
@@ -108,7 +104,8 @@ class SkyscannerApi:
         return skyscanner_main_request(url, query_string)
 
     def hotels(self):
-        rooms = math.ceil(int(self.passengers) / 2) # Adjusts the rooms according to how many guests (default 2 to a room)
+        rooms = math.ceil(int(self.passengers) / 2) # Adjusts the rooms according to how many guests (default 2 to a
+        # room)
         url = "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/searchHotels"
         querystring = {"entityId": self.destination_EntityId,
                        "checkin": self.departure_date,
@@ -138,12 +135,10 @@ class SkyscannerApi:
 # gpt = Chatgpt('London')
 #
 # response = gpt.best_time_to_go()
-
+#
 # # display the chatgpt stream
 # for chunk in response:
 #     if chunk.choices[0].delta.content is not None:
 #         print(chunk.choices[0].delta.content, end="")
-
-
 
 
