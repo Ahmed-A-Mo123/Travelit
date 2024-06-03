@@ -79,12 +79,7 @@ class SkyscannerApi:
         self.passengers = passengers
         self.departure_date = departure_date
         self.return_date = return_date
-<<<<<<< HEAD:main/back_end/api_interface.py
         self.status = ''
-        self.returned_flight_data = ''
-        self.returned_hotel_data = ''
-=======
->>>>>>> parent of 77318f8 (more backend features):main/back_end/api_manager.py
 
         origin_meta_data = meta_data_flight_api(origin)
         time.sleep(1)  # Api plan only allows me to make one request per second :(
@@ -96,11 +91,6 @@ class SkyscannerApi:
         self.origin_EntityId = origin_meta_data['data'][0]['entityId']
         self.destination_EntityId = destination_meta_data['data'][0]['entityId']
 
-    # --------------------------------------------------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------------------------------------------------
-
-    # ---------------------------------------------------------------------------------------------------------------------
-
     def flights(self):
         url = "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchFlights"
         query_string = {"originSkyId": self.origin_Skyid,
@@ -109,28 +99,25 @@ class SkyscannerApi:
                         "destinationEntityId": self.destination_EntityId,
                         "date": self.departure_date,
                         "adults": self.passengers,
-                        "market": "en-US",
-                        "countryCode": "UK"}
+                        "market": "en-US", "countryCode": "UK"}
         time.sleep(1)
-
-        self.returned_flight_data = skyscanner_main_request(url, query_string)
-        return self.returned_flight_data
+        return skyscanner_main_request(url, query_string)
 
     def hotels(self):
-        rooms = math.ceil(int(self.passengers) / 2) # Adjusts the rooms according to how many guests (default 2 to a room)
+        rooms = math.ceil(int(self.passengers) / 2) # Adjusts the rooms according to how many guests (default 2 to a
+        # room)
         url = "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/searchHotels"
         querystring = {"entityId": self.destination_EntityId,
                        "checkin": self.departure_date,
                        "checkout": self.return_date,
                        "adults": self.passengers,
                        "rooms": rooms,
-                       "limit": "8",
+                       "limit": "3",
                        "currency": "GBP",
                        "market": "en-GB",
                        "countryCode": "UK"}
         time.sleep(1)
-        self.returned_hotel_data = skyscanner_main_request(url, querystring)
-        return self.returned_hotel_data
+        return skyscanner_main_request(url, querystring)
 
 
 # def main():
@@ -148,12 +135,10 @@ class SkyscannerApi:
 # gpt = Chatgpt('London')
 #
 # response = gpt.best_time_to_go()
-
+#
 # # display the chatgpt stream
 # for chunk in response:
 #     if chunk.choices[0].delta.content is not None:
 #         print(chunk.choices[0].delta.content, end="")
-
-
 
 
