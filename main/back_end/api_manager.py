@@ -120,6 +120,8 @@ class SkyscannerApi:
         return skyscanner_main_request(url, querystring)
 
 
+
+# Testing Chatgpt API
 # def main():
 #     ai = Chatgpt('United Kingdom')
 #
@@ -142,3 +144,13 @@ class SkyscannerApi:
 #         print(chunk.choices[0].delta.content, end="")
 
 
+
+
+#testing SKY Scraper API
+# def main():
+#     test = SkyscannerApi('london', 'New york', '2', '2024-08-13', '2024-08-20')
+#     hotels = test.hotels()
+#     print(hotels)
+#
+# if __name__ == '__main__':
+#     main()

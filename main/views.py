@@ -10,9 +10,8 @@ def home(request):
     sky = SkyscannerApi('london', 'New york', '2', '2024-02-13', '2024-02-20')
     context = {
         'flights': sky.flights(),
-        'hotels': sky.hotels()
     }
-    return render(request, 'main/home.html', context)
+    return render(request, 'home.html', context)
 
 
 

@@ -1,0 +1,24 @@
+@font-face{
+    font-family: sky;
+    src: url(skyfont.otf)
+
+}
+
+.title {
+    font-family: sky;
+    font-size: 95px;
+    margin: 1px;
+    text-align: center;
+}
+
+.subheader {
+    background-color:#E4E6FC;
+    text-align:center; 
+    border:black; 
+    border-width:5px;
+    border-style:solid;
+    font-family: "Kodchasan", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
