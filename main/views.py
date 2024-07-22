@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .forms import Search
 
 from main.back_end.api_manager import Chatgpt
 from main.back_end.api_manager import SkyscannerApi
@@ -11,7 +12,8 @@ def home(request):
     # context = {
     #     'flights': sky.flights(),
     # }
-    return render(request, 'home.html')
+    form = Search()
+    return render(request, 'home.html', {"form": form})
 
 
 

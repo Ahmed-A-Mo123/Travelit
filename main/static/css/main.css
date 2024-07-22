@@ -6,7 +6,7 @@
 
 .title {
     font-family: sky;
-    font-size: 95px;
+    font-size: 100px;
     margin: 1px;
     text-align: center;
 }
@@ -17,12 +17,20 @@
     font-family: "Kodchasan", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 150px;
+    color: black;
+
+}
+
+.search-form {
+    margin-top: 25px;
+    margin-bottom: 100px;
+    text-align: center;
+
 }
 
 #plane {
     width:100%;
-    height: 100%
+    height: 100%;
     margin-bottom: 1px;
     padding-bottom: 1px
 }
@@ -30,12 +38,11 @@
 .img-container-2 {
     position:relative;
 
-
 }
 
 #clouds {
     width: 100%;
-    height: 100%
+    height: 100%;
     margin-top: 5px;
 }
 

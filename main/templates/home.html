@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-color:#E4E6FC">
@@ -17,16 +17,20 @@
     <div class="subheader" >
         <h1> AI TRAVEL HELPER </h1>
     </div>
-<!--     add a django form here-->
+    <div>
+        <form class="search-form" action="">
+            {{form.as_table}}
+        </form>
 
     </div>
 
+
     <div class="img-container-1">
-        <img id="plane" src="/static/plane.png" alt="plane">
+        <img id="plane" src="/static/images/plane.png" alt="plane">
     </div>
 
     <div class="img-container-2">
-        <img id="clouds" src="static/clouds.png" alt="clouds">
+        <img id="clouds" src="static/images/clouds.png" alt="clouds">
         <div class="overlay-content">
             <h1>Tripit</h1>
             <p>check out my linkedin</p>
