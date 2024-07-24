@@ -20,9 +20,23 @@
     </div>
     <div>
 
-        <form class="search-form" action="/" method="post">
+        <form class=" form-group " action="/" method="post">
             {% csrf_token %}
-            {{form.as_table}}
+                    {{form.origin}}
+
+
+                    {{form.destination}}
+
+
+
+
+
+                    {{form.departure_date}}
+
+
+
+                    {{form.return_date}}
+
             <button class="search_button" type="submit", name="search">GO</button>
         </form>
 
