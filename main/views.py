@@ -20,7 +20,7 @@ def home(request):
             destination = form.cleaned_data['destination']
             departure_date = form.cleaned_data['departure_date']
             return_date = form.cleaned_data['return_date']
-            print(origin, destination, departure_date,return_date)
+            return render(request, 'results.html', )
     else:
         form = Search()
         return render(request, 'home.html', {"form": form})

@@ -23,14 +23,29 @@
 
 .search-form {
     margin-top: 25px;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
     text-align: center;
 
 }
 
-.search_button {
-    font-weight: 100;
+.search-input {
+    width:15%
 }
+
+.date-form {
+    margin-top: 15px
+}
+
+.date-pick-input {
+    width:5%
+}
+
+.search-button {
+    margin-top: 15px;
+    font-weight: 100;
+    color: blue
+}
+
 
 #plane {
     width:100%;
