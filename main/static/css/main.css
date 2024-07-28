@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/* Home.html css */
+
 @font-face{
     font-family: sky;
     src: url(skyfont.otf)
@@ -33,11 +36,12 @@
 }
 
 .date-form {
-    margin-top: 15px
+    margin-top: 15px;
+
 }
 
 .date-pick-input {
-    width:5%
+    width:10%
 }
 
 .search-button {
@@ -60,19 +64,45 @@
 }
 
 #clouds {
+    position:relative;
+    top: -100px;
     width: 100%;
     height: 100%;
     margin-top: 5px;
+    
 }
 
 .overlay-content {
 
     position: absolute;
     font-family: "Kodchasan", sans-serif;
-    top: 50%; /* Adjust to position vertically */
+    top: 30%; /* Adjust to position vertically */
     left: 50%; /* Adjust to position horizontally */
     transform: translate(-50%, -50%); /* Center the content */
     text-align: center;
 
 
+}
+/* -------------------------------------------------------------------------- */
+/* results.html css */
+
+.grid-container {
+    display: grid; 
+    grid-template-columns: auto auto; 
+    column-gap: 250px;
+    row-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 0%;
+}
+
+.grid-item {
+    background-color:#F8F8F8;
+    border-style: solid; 
+    height: 300px;
+    margin: 10px;
+    width: 700px;
+    border-radius: 5.5%;
+    
 }

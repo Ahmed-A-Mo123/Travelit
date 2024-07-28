@@ -11,9 +11,15 @@ class Search(forms.Form):
         'class': 'border rounded search-input',
         'placeholder': 'Enter Destination'
     }))
-    departure_date = forms.DateField(widget=forms.SelectDateWidget(empty_label="Departure Date", attrs={
-        'class': 'border rounded date-pick-input'
+    # test = forms.DateTimeField(widget= forms.DateInput( attrs= {
+    #     # 'class': 'form-control',
+    #     'type': 'date'
+    # }))
+    departure_date = forms.DateTimeField(widget=forms.DateInput(attrs={
+        'class': 'border rounded date-pick-input',
+        'type': 'date'
     }), required=True)
-    return_date = forms.DateField(widget=forms.SelectDateWidget(empty_label="", attrs={
-        'class': 'border rounded date-pick-input'
+    return_date = forms.DateTimeField(widget=forms.DateInput(attrs={
+        'class': 'border rounded date-pick-input',
+        'type': 'date'
     }), required=True, label="return")
