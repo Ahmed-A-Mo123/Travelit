@@ -121,6 +121,37 @@ class SkyscannerApi:
 
 
 
+
+# -----------------------------------------------------------------------------------------
+# Current weather at destination
+
+class WeatherApi:
+    def __init__(self, destination) -> None:
+        self.destination = destination
+
+    def api_request(self):
+        url = "https://yahoo-weather5.p.rapidapi.com/weather"
+
+        querystring = {"location":self.destination,"format":"json","u":"c"}
+
+        headers = {
+            "x-rapidapi-key": "6e6479f259mshd843a25a24806a4p115368jsnb1d58a9c3efa",
+            "x-rapidapi-host": "yahoo-weather5.p.rapidapi.com"
+        }
+
+        response = requests.get(url, headers=headers, params=querystring)
+
+        return type(response.json())
+    
+#------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 # Testing Chatgpt API
 # def main():
 #     ai = Chatgpt('United Kingdom')
@@ -154,26 +185,3 @@ class SkyscannerApi:
 #
 # if __name__ == '__main__':
 #     main()
-
-# -----------------------------------------------------------------------------------------
-# Current weather at destination
-
-class WeatherApi:
-    def __init__(self, destination) -> None:
-        self.destination = destination
-
-    def api_request(self):
-        url = "https://yahoo-weather5.p.rapidapi.com/weather"
-
-        querystring = {"location":self.destination,"format":"json","u":"c"}
-
-        headers = {
-            "x-rapidapi-key": "6e6479f259mshd843a25a24806a4p115368jsnb1d58a9c3efa",
-            "x-rapidapi-host": "yahoo-weather5.p.rapidapi.com"
-        }
-
-        response = requests.get(url, headers=headers, params=querystring)
-
-        return type(response.json())
-    
-#------------------------------------------------------------------------------------------

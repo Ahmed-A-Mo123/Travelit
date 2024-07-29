@@ -23,12 +23,18 @@
         <form class="search-form " action="/" method="post">
             {% csrf_token %}
 
-                    {{form.origin}}
-                    {{form.destination}}
+                {{form.origin}}
+                {{form.destination}}
 
             <div class="date-form">
                 {{form.departure_date}}
+                <label for="departure-date"></label>
                 {{form.return_date}}
+                <label for="return-date"></label>
+
+            </div>
+            <div>
+                {{form.passengers}}
             </div>
 
             <div class="search-button">

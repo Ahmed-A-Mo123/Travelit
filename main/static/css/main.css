@@ -99,7 +99,7 @@
 
 .grid-item {
     background-color:#F8F8F8;
-    border-style: solid; 
+    border-style:dashed;
     height: 300px;
     margin: 10px;
     width: 700px;

@@ -23,3 +23,9 @@ class Search(forms.Form):
         'class': 'border rounded date-pick-input',
         'type': 'date'
     }), required=True, label="return")
+
+    passengers = forms.IntegerField(widget= forms.TextInput(attrs={
+        'class': 'border rounded search-input',
+        'placeholder': 'Passengers'
+    }))
+
