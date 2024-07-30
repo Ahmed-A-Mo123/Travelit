@@ -23,11 +23,12 @@ def home(request):
                 "departure_date": form.cleaned_data['departure_date'],
                 "return_date": form.cleaned_data['return_date']
             }
-            date_check = SearchValidation([content['departure_date'],content['return_date']])
+            date_check = SearchValidation([content['departure_date'], content['return_date']])
             try:
                 date_check.is_date_valid()
             except ValueError as e:
                 print({e})
+                return render(request, 'error.html', content)
             # finish this error handling of wrong date inputs and add the necessary frontend aspects.
             return render(request, 'results.html', content)
 

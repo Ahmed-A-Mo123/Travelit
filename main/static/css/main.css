@@ -60,6 +60,7 @@
 
 .img-container-2 {
     position:relative;
+    margin-bottom: 1px;
 
 }
 
@@ -103,6 +104,13 @@
     height: 300px;
     margin: 10px;
     width: 700px;
-    border-radius: 5.5%;
+    border-radius: 25px;
     
+}
+.grid-text {
+    text-align: center;
+    text-color:blue;
+    font-family: "Kodchasan", sans-serif;
+    position: relative;
+    top: -50px
 }

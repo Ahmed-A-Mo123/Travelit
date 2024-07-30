@@ -8,15 +8,16 @@ class SearchValidation:
 
     def is_date_valid(self):  # returns a boolean - takes a list of dates and works out if date A is before date B
         # otherwise throws an error
-        valid_date = False
+        valid_date = []
         for date in self.date:
             if date > self.current_date:
-                valid_date = True
+                valid_date.append(True)
+            else:
+                valid_date.append(False)
 
-        if not valid_date:
+        if not valid_date[0] or not valid_date[1]:
             raise ValueError("Dates are void")
 
 
     def is_country_valid(self):  # return a boolean - Check if a country is valid otherwise throws an error
         pass
-
