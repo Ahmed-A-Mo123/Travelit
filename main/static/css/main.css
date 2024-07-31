@@ -44,6 +44,10 @@
     width:10%
 }
 
+.passengers-form {
+    margin-top: 15px
+}
+
 .search-button {
     margin-top: 15px;
     font-weight: 100;
@@ -100,11 +104,12 @@
 
 .grid-item {
     background-color:#F8F8F8;
-    border-style:dashed;
+    /*border-style:dashed;*/
     height: 300px;
     margin: 10px;
     width: 700px;
     border-radius: 25px;
+
     
 }
 .grid-text {
@@ -114,3 +119,45 @@
     position: relative;
     top: -50px
 }
+/*---------------------------------------------------------------*/
+/*Loading-testpage.html */
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: relative;
+    top: 18%;
+    left: 42%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff; /* Add background color if needed */
+    filter: blur(20px); /* Adjust blur value */
+    z-index: 1; /* Ensure it's behind the loader */
+}
+
+/*
+------------------------------------------------------------------------------*/
+

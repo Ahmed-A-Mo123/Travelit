@@ -29,7 +29,6 @@ def home(request):
             except ValueError as e:
                 print({e})
                 return render(request, 'error.html', content)
-            # finish this error handling of wrong date inputs and add the necessary frontend aspects.
             return render(request, 'results.html', content)
 
 

@@ -18,6 +18,5 @@ class SearchValidation:
         if not valid_date[0] or not valid_date[1]:
             raise ValueError("Dates are void")
 
-
     def is_country_valid(self):  # return a boolean - Check if a country is valid otherwise throws an error
         pass
