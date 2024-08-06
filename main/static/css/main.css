@@ -114,10 +114,16 @@
 }
 .grid-text {
     text-align: center;
-    text-color:blue;
     font-family: "Kodchasan", sans-serif;
     position: relative;
     top: -50px
+}
+
+.grid-button {
+    position: relative;
+    top: -150px;
+    left: 600px;
+    color: black;
 }
 /*---------------------------------------------------------------*/
 /*Loading-testpage.html */
@@ -161,3 +167,34 @@
 /*
 ------------------------------------------------------------------------------*/
 
+/* POP UP toggle css */
+
+.pop-up {
+    width: 1450px;
+    height:700px;
+    position: fixed;
+    border: 5px solid;
+    top: 175px;
+    left: 220px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    z-index: 3;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.close-button {
+    position: relative;
+    top: -35px;
+    left: 675px;
+    text-align: center;
+    height: min-content;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 16
+}
