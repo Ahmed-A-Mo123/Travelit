@@ -98,7 +98,10 @@ class SkyscannerApi:
                         "originEntityId": self.origin_EntityId,
                         "destinationEntityId": self.destination_EntityId,
                         "date": self.departure_date,
+                        "returnDate": self.return_date,
                         "adults": self.passengers,
+                        "sortBy": "best",
+                        "limit": '1',
                         "market": "en-US", "countryCode": "UK"}
         time.sleep(1)
         return skyscanner_main_request(url, query_string)
@@ -180,8 +183,8 @@ class WeatherApi:
 #testing SKY Scraper API
 # def main():
 #     test = SkyscannerApi('london', 'New york', '2', '2024-08-13', '2024-08-20')
-#     hotels = test.hotels()
-#     print(hotels)
-#
+#     flights = test.flights()
+#     print(flights)
+
 # if __name__ == '__main__':
 #     main()

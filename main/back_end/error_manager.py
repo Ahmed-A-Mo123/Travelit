@@ -20,3 +20,5 @@ class SearchValidation:
 
     def is_country_valid(self):  # return a boolean - Check if a country is valid otherwise throws an error
         pass
+
+

@@ -167,9 +167,10 @@
 /*
 ------------------------------------------------------------------------------*/
 
-/* POP UP toggle css */
+/* POP UP Results toggle css */
 
 .pop-up {
+    margin: auto;
     width: 1450px;
     height:700px;
     position: fixed;
@@ -199,4 +200,16 @@
   'wght' 300,
   'GRAD' 0,
   'opsz' 16
+}
+
+.result-item {
+    border: 2px solid ;
+    height: 101px;
+    width: 90%;
+    border-radius: 15px;
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: #F8F7F7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+
 }

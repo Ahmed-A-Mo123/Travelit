@@ -80,7 +80,16 @@
 
 <!-- -------------------------------------------------------------------------------------------------------------- -->
 
-<script src="{% static 'script/script.js'%}"></script>
+<script src="{% static 'script/script.js'%}">
+</script>
+<script>
+    window.origin = '{{origin|safe}}';
+    window.destination = '{{destination|safe}}';
+    window.passengers = '{{passengers|safe}}';
+    window.departure_date = '{{departure_date|safe}}';
+    window.return_date = '{{return_date|safe}}';
+    
+</script>
 </body>
 </html>
  
