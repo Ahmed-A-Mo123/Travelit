@@ -4,6 +4,8 @@ const expandButton2 = document.getElementById('expand-button-2')
 const expandButton3 = document.getElementById('expand-button-3')
 const expandButton4 = document.getElementById('expand-button-4')
 const background = document.getElementById('background')
+let loader1 = document.getElementById('loader1')
+let complete = document.getElementById('complete')
 
 
 
@@ -46,47 +48,63 @@ function main() {
     // This is the main function which serves an event listerner and calls the relevant function to execute when triggered
 
     // create a key-pair dictionary/ hash map to send the user input details to the api
-    const userData = new FormData();
-    userData.append('origin', window.origin ) 
-    userData.append('destination',window.destination) 
-    userData.append('passengers',window.passengers) 
-    userData.append('departure_date', window.departure_date) 
-    userData.append('return_date', window.return_date) 
-    
+    window.onload = () => {
+        const userData = new FormData();
+        userData.append('origin', window.origin );
+        userData.append('destination',window.destination); 
+        userData.append('passengers',window.passengers);
+        userData.append('departure_date', window.departure_date); 
+        userData.append('return_date', window.return_date);
 
-    // Send an AJAX POST request to the Django view
-    fetch('api_request/', {
-        method: 'POST',
-        body: userData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest' } // Necessary for Django to recognize AJAX request
-    })
-        .then(response => response.json())
-        .then(data => {}) 
-        // test if the api is returning correctly and everything is working in order.
-        .catch(error => console.error('Error:', error));
+        
+        // Send an AJAX POST request to the Django view
+        fetch('api_request/', {
+            method: 'POST',
+            body: userData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' } // Necessary for Django to recognize AJAX request
+        })
+            .then(response => response.json())
+            .then(data => {
+                loader1.style.display = 'none';
+                complete.style.display = 'block';
+                console.log('Data received from server:', data);
+                console.log('FINISHED LOADING');
+                
+
+                expandButton1.addEventListener('click', function() {
+                    console.log('ive been clicked');
+                    console.log(window.passengers);
+                    console.log(userData)
+                    displayResults();
+                })
+                
+
+            }) 
+            // test if the api is returning correctly and everything is working in order.
+            .catch(error => console.error('Error:', error));
+
+
+            expandButton2.addEventListener('click', function() {
+                console.log('ive been clicked');
+                displayResults();
+            })
+            expandButton3.addEventListener('click', function() {
+                console.log('ive been clicked');
+                displayResults();
+            })
+            expandButton4.addEventListener('click', function() {
+                console.log('ive been clicked');
+                displayResults();
+            })
+
+
+    }
 
 
 
 
-    expandButton1.addEventListener('click', function() {
-        console.log('ive been clicked');
-        console.log(window.passengers);
-        console.log(userData)
-        displayResults();
-    })
-    expandButton2.addEventListener('click', function() {
-        console.log('ive been clicked');
-        displayResults();
-    })
-    expandButton3.addEventListener('click', function() {
-        console.log('ive been clicked');
-        displayResults();
-    })
-    expandButton4.addEventListener('click', function() {
-        console.log('ive been clicked');
-        displayResults();
-    })
+
     
     
 

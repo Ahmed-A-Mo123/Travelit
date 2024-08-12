@@ -27,10 +27,14 @@
   <!-- Results Grid With Expand Button -->
     
     <div class="grid-container" id="grid-container">
+        
         <div class="grid-item" id="grid-item-1">
             <!-- Flights -->
             <h1 class="grid-text">Flights</h1>
-            <div class="loader"></div>
+            <div class="loader" id="loader1"></div>
+            <div class="complete" id="complete" style="display: none;">
+                <img class="green-tick" src="static/images/green-tick.png" alt="completion-tick">
+            </div>
             <button class="btn btn-outline-dark grid-button" id="expand-button-1"> Expand </button>
 
         </div>
@@ -38,7 +42,7 @@
         <div class="grid-item" id="grid-item-2">
             <!-- weather at destination -->
             <h1 class="grid-text">Weather At Destination</h1>
-            <div class="loader"></div>
+            <div class="loader" id="loader2"></div>
             <button class="btn btn-outline-dark grid-button" id="expand-button-2"> Expand </button>
               
         </div>
@@ -46,7 +50,7 @@
         <div class="grid-item" id="grid-item-3">
             <!-- Hotels -->
             <h1 class="grid-text">Hotels</h1>
-            <div class="loader"></div>
+            <div class="loader" id="loader3"></div>
             <button class="btn btn-outline-dark grid-button" id="expand-button-3"> Expand </button>
 <!--            <h1 class="grid-text">COMING SOON</h1>-->
         </div>
@@ -54,7 +58,7 @@
         <div class="grid-item" id="grid-item-4">
             <!-- ChatGPT itinerary -->
             <h1 class="grid-text">ChatGPT Itinerary</h1>
-            <div class="loader"></div>
+            <div class="loader" id="loader4"></div>
             <button class="btn btn-outline-dark grid-button" id="expand-button-4"> Expand </button>
 
         </div>

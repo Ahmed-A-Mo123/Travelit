@@ -4,7 +4,7 @@ import time
 import json
 import math
 from datetime import date
-
+from django.http import JsonResponse
 
 # ----------------------------------------------------------------------------------------------------------------
 def chatgpt_request(prompt):
@@ -26,18 +26,18 @@ def meta_data_flight_api(location):  # Gets the data needed to make further requ
     querystring = {"query": location}
 
     headers = {
-        "X-RapidAPI-Key": "6e6479f259mshd843a25a24806a4p115368jsnb1d58a9c3efa",
+        "X-RapidAPI-Key": "1e90b0068dmsh0d077c1c38e9258p1945dejsne7ce0f0a3fee",
         "X-RapidAPI-Host": "sky-scrapper.p.rapidapi.com"
     }
 
-    chatgpt_response = requests.get(url, headers=headers, params=querystring)
-    return chatgpt_response.json()
+    chatgpt_response = requests.get(url, headers=headers, params=querystring) # change this varible name makes no sense
+    return chatgpt_response.json() # here too 
 
 
 def skyscanner_main_request(url, querystring):  # api works
     url = url
     headers = {
-        "X-RapidAPI-Key": "6e6479f259mshd843a25a24806a4p115368jsnb1d58a9c3efa",
+        "X-RapidAPI-Key": "1e90b0068dmsh0d077c1c38e9258p1945dejsne7ce0f0a3fee",
         "X-RapidAPI-Host": "sky-scrapper.p.rapidapi.com"
     }
 
@@ -184,7 +184,7 @@ class WeatherApi:
 # def main():
 #     test = SkyscannerApi('london', 'New york', '2', '2024-08-13', '2024-08-20')
 #     flights = test.flights()
-#     print(flights)
+#     print(type(flights))
 
 # if __name__ == '__main__':
 #     main()
