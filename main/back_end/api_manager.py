@@ -54,7 +54,7 @@ class Chatgpt:
 
     # destination info
     def destination_info(self):
-        prompt = f'Give me bullet points about {self.destination}'
+        prompt = f'Give me bullet points about {self.destination} and add emojis'
         return chatgpt_request(prompt)
 
     def things_to_do(self):
@@ -102,6 +102,7 @@ class SkyscannerApi:
                         "adults": self.passengers,
                         "sortBy": "best",
                         "limit": '1',
+                        'currency': 'GBP',
                         "market": "en-US", "countryCode": "UK"}
         time.sleep(1)
         return skyscanner_main_request(url, query_string)
@@ -132,19 +133,20 @@ class WeatherApi:
     def __init__(self, destination) -> None:
         self.destination = destination
 
-    def api_request(self):
-        url = "https://yahoo-weather5.p.rapidapi.com/weather"
+    def weather(self):
+        url =  "https://weatherapi-com.p.rapidapi.com/forecast.json"
 
-        querystring = {"location":self.destination,"format":"json","u":"c"}
+        querystring = {"q":"London","days":"5"}
 
         headers = {
-            "x-rapidapi-key": "6e6479f259mshd843a25a24806a4p115368jsnb1d58a9c3efa",
-            "x-rapidapi-host": "yahoo-weather5.p.rapidapi.com"
+            "x-rapidapi-key": "1e90b0068dmsh0d077c1c38e9258p1945dejsne7ce0f0a3fee",
+            "x-rapidapi-host": "weatherapi-com.p.rapidapi.com"
+
         }
 
         response = requests.get(url, headers=headers, params=querystring)
 
-        return type(response.json())
+        return response.json()
     
 #------------------------------------------------------------------------------------------
 
@@ -158,15 +160,15 @@ class WeatherApi:
 # Testing Chatgpt API
 # def main():
 #     ai = Chatgpt('United Kingdom')
-#
+
 #     data = ai.destination_info()
-#
+
 #     for item in data:
 #         print(item.choices[0].delta.content, end="")
 
 
 # if __name__ == '__main__':
-#     # main()
+    # main()
 #
 # gpt = Chatgpt('London')
 #
@@ -180,11 +182,11 @@ class WeatherApi:
 
 
 
-#testing SKY Scraper API
+# testing SKY Scraper API
 # def main():
-#     test = SkyscannerApi('london', 'New york', '2', '2024-08-13', '2024-08-20')
-#     flights = test.flights()
-#     print(type(flights))
+#     test = WeatherApi('london')
+#     weather = test.weather()
+#     print(weather['forecast']['forecastday'][0]['day']['condition']['text'])
 
 # if __name__ == '__main__':
 #     main()

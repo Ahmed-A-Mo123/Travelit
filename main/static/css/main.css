@@ -125,6 +125,14 @@
     left: 600px;
     color: black;
 }
+
+.comingsoon-text {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
 /*---------------------------------------------------------------*/
 /*Loading-testpage.html */
 .loader {
@@ -151,6 +159,7 @@
 
 .green-tick {
     margin: auto;
+    margin-top: 50px;
     width: 80px;
     height: 80px;
 }

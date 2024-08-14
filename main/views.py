@@ -7,7 +7,7 @@ from .forms import Search
 import logging
 
 from main.back_end.api_manager import Chatgpt
-from main.back_end.api_manager import SkyscannerApi
+from main.back_end.api_manager import SkyscannerApi, WeatherApi
 from main.back_end.error_manager import SearchValidation
 
 
@@ -44,9 +44,14 @@ def home(request):
     else:
         form = Search()
         return render(request, 'home.html', {"form": form})
+    
+
+# --------------------------------------------------------------------------------------------------------------------------
+# API Endpoints for my JS script to access external apis (operations managed by api_manager.py file )
+
 
 @csrf_exempt
-def api_request(request):
+def flights_request(request):
     if request.method == 'POST':
         try:
             # Get all the user input details
@@ -70,6 +75,47 @@ def api_request(request):
         except Exception as e:
             logging.error(f"Error fetching flights: {e}")
             return JsonResponse({'error': 'Something went wrong. Please try again later.'}, status=500)
+
+
+
+@csrf_exempt
+def weather_request(request):
+    if request.method == 'POST':
+
+        destination = request.POST.get('destination')
+
+        # make Api request
+        weather_obj = WeatherApi(destination)
+        weather = weather_obj.weather()
+
+        # Return the response as JSON
+        return JsonResponse(weather, safe=False)
+    
+
+
+
+@csrf_exempt
+def hotel_request(request): # coming soon
+    pass
+
+
+@csrf_exempt
+def chatGPT_request(request):
+    pass
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 

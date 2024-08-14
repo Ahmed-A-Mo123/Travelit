@@ -5,8 +5,11 @@ const expandButton3 = document.getElementById('expand-button-3')
 const expandButton4 = document.getElementById('expand-button-4')
 const background = document.getElementById('background')
 let loader1 = document.getElementById('loader1')
-let complete = document.getElementById('complete')
-
+let loader2 = document.getElementById('loader2')
+let complete1 = document.getElementById('complete1')
+let complete2 = document.getElementById('complete2')
+let complete3 = document.getElementById('complete3')
+let complete4 = document.getElementById('complete4')
 
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -56,20 +59,75 @@ function main() {
         userData.append('departure_date', window.departure_date); 
         userData.append('return_date', window.return_date);
 
-        
-        // Send an AJAX POST request to the Django view
-        fetch('api_request/', {
-            method: 'POST',
-            body: userData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' } // Necessary for Django to recognize AJAX request
-        })
-            .then(response => response.json())
+
+
+        Promise.all([
+
+            fetch('flights_request/', {
+                method: 'POST',
+                body: userData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest' } // Necessary for Django to recognize AJAX request
+            })
+                .then(response => response.json()).catch(error => ({ error })),
+            
+            fetch('weather_request/', {
+                method: 'POST',
+                body: userData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest' }
+            })
+                .then(response => response.json()).catch(error => ({ error })),
+
+            // fetch(url3).then(response => response.json()).catch(error => ({ error }))
+
+            
+        ])
+
+
+
             .then(data => {
-                loader1.style.display = 'none';
-                complete.style.display = 'block';
-                console.log('Data received from server:', data);
-                console.log('FINISHED LOADING');
+                const [fligtData, weatherData, chatGptData] = data;
+
+                if (fligtData.error){
+                    console.log('Error with the flight data')
+                }
+                else {
+                    loader1.style.display = 'none';
+                    complete1.style.display = 'block';
+                    console.log('Data received from server:', data);
+                    console.log('FLIGHT DATA FINISHED LOADING');
+
+                    expandButton1.classList.remove('btn-outline-dark')
+                    expandButton1.classList.add('btn-outline-success')
+
+                    expandButton1.addEventListener('click', function() {
+                        console.log('ive been clicked');
+                        console.log(window.passengers);
+                        console.log(userData)
+                        displayResults();
+                    })
+
+                }
+
+                if (weatherData.error){
+                    console.log('Error with the weather data')
+                }
+                else {
+                    loader2.style.display = 'none';
+                    complete2.style.display = 'block' // Instead of a green tick display the results of the weather inside the div 
+                    console.log('Data received from server:', data);
+                    console.log('WEATHER DATA FINISHED LOADING');
+                }
+
+                // if (chatGptData.error){
+                //     console.log('Error with the chatGPT data')
+                // }
+
+
+
+
+        
                 
 
                 expandButton1.addEventListener('click', function() {
