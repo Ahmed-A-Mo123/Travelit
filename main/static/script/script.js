@@ -1,4 +1,5 @@
 const gridItem1 = document.getElementById('grid-item-1')
+const gridItem2 = document.getElementById('grid-item-2')
 const expandButton1 = document.getElementById('expand-button-1')
 const expandButton2 = document.getElementById('expand-button-2')
 const expandButton3 = document.getElementById('expand-button-3')
@@ -44,6 +45,34 @@ function displayResults() {
     }
 };
 
+function displayWeather() {
+
+
+    const weatherGrid = document.createElement('div')
+    weatherGrid.className = 'weather-container'
+
+    const weatherRow = document.createElement('div')
+    weatherRow.className = 'row align-items-center'
+
+    const weatherItem1 = document.createElement('div')
+    weatherItem1.className = 'col weather-col'
+    weatherItem1.innerHTML = '<p>CONTENT</p>'
+
+    const weatherItem2 = document.createElement('div')
+    weatherItem2.className = 'col weather-col'
+    weatherItem2.innerHTML = '<p>CONTENT</p>'
+
+    const weatherItem3 = document.createElement('div')
+    weatherItem3.className = 'col weather-col'
+    weatherItem3.innerHTML = '<p>CONTENT</p>'
+
+    weatherRow.append(weatherItem1, weatherItem2, weatherItem3);
+
+    weatherGrid.appendChild(weatherRow);
+
+    gridItem2.appendChild(weatherGrid)
+
+}
 
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -115,10 +144,15 @@ function main() {
                 }
                 else {
                     loader2.style.display = 'none';
-                    complete2.style.display = 'block' // Instead of a green tick display the results of the weather inside the div 
+                    complete2.style.display = 'none' // Instead of a green tick display the results of the weather inside the div 
                     console.log('Data received from server:', data);
                     console.log('WEATHER DATA FINISHED LOADING');
+
+                    displayWeather()
+
                 }
+
+
 
                 // if (chatGptData.error){
                 //     console.log('Error with the chatGPT data')

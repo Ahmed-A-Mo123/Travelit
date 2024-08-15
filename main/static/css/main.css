@@ -132,6 +132,19 @@
     padding: 5px;
     text-align: center;
 }
+.weather-container{
+    position: relative;
+    top: -75px;
+}
+
+.weather-col {
+	border: 2px solid black;
+    height: 200px;
+    width: 20px;
+    margin:5px;
+    border-radius: 25px;
+    
+}
 
 /*---------------------------------------------------------------*/
 /*Loading-testpage.html */
