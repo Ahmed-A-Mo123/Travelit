@@ -13,6 +13,19 @@ let complete3 = document.getElementById('complete3')
 let complete4 = document.getElementById('complete4')
 
 
+function getDayName(dateStr) // This function helps convert a date string into a day to use in the weather section
+{
+    var date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB', { weekday: 'short' });        
+}
+
+
+
+
+
+
+
+
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function displayResults() {
     // This function allows the user to expand the view of their results (a pop-up). It also checks if the pop-up element is being displayed before creating a fresh pop-up
@@ -45,30 +58,45 @@ function displayResults() {
     }
 };
 
-function displayWeather() {
+function displayWeather(data) {
 
+    const daylist = [data[1]['forecast']['forecastday'][0]['date'], // forcast date 1
+                     data[1]['forecast']['forecastday'][1]['date'], // forcast date 2
+                     data[1]['forecast']['forecastday'][2]['date']  // forcast date 3
+                    ]
 
+    var day1 = getDayName(daylist[0]) // converts full date in the day
+    var day2 = getDayName(daylist[1])
+    var day3 = getDayName(daylist[2])
+
+    var day1Icon = data[1]['forecast']['forecastday'][0]['day']['condition']['icon']
+    var day2Icon = data[1]['forecast']['forecastday'][1]['day']['condition']['icon']
+    var day3Icon = data[1]['forecast']['forecastday'][2]['day']['condition']['icon']
+    
+    var maxTemp1 = data[1]['forecast']['forecastday'][0]['day']['maxtemp_c']
+    var maxTemp2 = data[1]['forecast']['forecastday'][1]['day']['maxtemp_c']
+    var maxTemp3 = data[1]['forecast']['forecastday'][2]['day']['maxtemp_c']
+
+    console.log(data[1]['forecast']['forecastday'][0]['date'])
     const weatherGrid = document.createElement('div')
     weatherGrid.className = 'weather-container'
-
-    const weatherRow = document.createElement('div')
-    weatherRow.className = 'row align-items-center'
+    
+    // const weatherRow = document.createElement('div')
+    // weatherRow.className = ''
 
     const weatherItem1 = document.createElement('div')
-    weatherItem1.className = 'col weather-col'
-    weatherItem1.innerHTML = '<p>CONTENT</p>'
+    weatherItem1.className = 'weather-col'
+    weatherItem1.innerHTML = `<p>${day1}</p><img src="https://${day1Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp1}</p>`
 
     const weatherItem2 = document.createElement('div')
-    weatherItem2.className = 'col weather-col'
-    weatherItem2.innerHTML = '<p>CONTENT</p>'
+    weatherItem2.className = 'weather-col'
+    weatherItem2.innerHTML = `<p>${day2}</p><img src="https://${day2Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp2}<</p>`
 
     const weatherItem3 = document.createElement('div')
-    weatherItem3.className = 'col weather-col'
-    weatherItem3.innerHTML = '<p>CONTENT</p>'
+    weatherItem3.className = 'weather-col'
+    weatherItem3.innerHTML = `<p>${day3}</p><img src="https://${day3Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp3}<</p>`
 
-    weatherRow.append(weatherItem1, weatherItem2, weatherItem3);
-
-    weatherGrid.appendChild(weatherRow);
+    weatherGrid.append(weatherItem1, weatherItem2, weatherItem3)
 
     gridItem2.appendChild(weatherGrid)
 
@@ -148,7 +176,7 @@ function main() {
                     console.log('Data received from server:', data);
                     console.log('WEATHER DATA FINISHED LOADING');
 
-                    displayWeather()
+                    displayWeather(data)
 
                 }
 
