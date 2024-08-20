@@ -136,7 +136,7 @@ class WeatherApi:
     def weather(self):
         url =  "https://weatherapi-com.p.rapidapi.com/forecast.json"
 
-        querystring = {"q":"London","days":"5"}
+        querystring = {"q":self.destination,"days":"5"}
 
         headers = {
             "x-rapidapi-key": "1e90b0068dmsh0d077c1c38e9258p1945dejsne7ce0f0a3fee",

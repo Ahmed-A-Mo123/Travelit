@@ -77,6 +77,10 @@ function displayWeather(data) {
     var maxTemp2 = data[1]['forecast']['forecastday'][1]['day']['maxtemp_c']
     var maxTemp3 = data[1]['forecast']['forecastday'][2]['day']['maxtemp_c']
 
+    var conditionText1 = data[1]['forecast']['forecastday'][0]['day']['condition']['text']
+    var conditionText2 = data[1]['forecast']['forecastday'][1]['day']['condition']['text']
+    var conditionText3 = data[1]['forecast']['forecastday'][2]['day']['condition']['text']
+
     console.log(data[1]['forecast']['forecastday'][0]['date'])
     const weatherGrid = document.createElement('div')
     weatherGrid.className = 'weather-container'
@@ -86,15 +90,15 @@ function displayWeather(data) {
 
     const weatherItem1 = document.createElement('div')
     weatherItem1.className = 'weather-col'
-    weatherItem1.innerHTML = `<p>${day1}</p><img src="https://${day1Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp1}</p>`
+    weatherItem1.innerHTML = `<p>${day1}</p><img src="https://${day1Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp1}</p><p>${conditionText1}</p>`
 
     const weatherItem2 = document.createElement('div')
     weatherItem2.className = 'weather-col'
-    weatherItem2.innerHTML = `<p>${day2}</p><img src="https://${day2Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp2}<</p>`
+    weatherItem2.innerHTML = `<p>${day2}</p><img src="https://${day2Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp2}<</p><p>${conditionText2}</p>`
 
     const weatherItem3 = document.createElement('div')
     weatherItem3.className = 'weather-col'
-    weatherItem3.innerHTML = `<p>${day3}</p><img src="https://${day3Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp3}<</p>`
+    weatherItem3.innerHTML = `<p>${day3}</p><img src="https://${day3Icon}" alt="weather icon" class="weather-icon"><p>${maxTemp3}<</p><p>${conditionText3}</p>`
 
     weatherGrid.append(weatherItem1, weatherItem2, weatherItem3)
 
@@ -144,15 +148,15 @@ function main() {
 
 
             .then(data => {
-                const [fligtData, weatherData, chatGptData] = data;
+                const [flightData, weatherData] = data;
 
-                if (fligtData.error){
+                if (flightData.error){
                     console.log('Error with the flight data')
                 }
                 else {
                     loader1.style.display = 'none';
                     complete1.style.display = 'block';
-                    console.log('Data received from server:', data);
+                    console.log('Data received from server:', flightData);
                     console.log('FLIGHT DATA FINISHED LOADING');
 
                     expandButton1.classList.remove('btn-outline-dark')
@@ -205,10 +209,6 @@ function main() {
             .catch(error => console.error('Error:', error));
 
 
-            expandButton2.addEventListener('click', function() {
-                console.log('ive been clicked');
-                displayResults();
-            })
             expandButton3.addEventListener('click', function() {
                 console.log('ive been clicked');
                 displayResults();

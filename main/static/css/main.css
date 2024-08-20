@@ -7,6 +7,10 @@
 
 }
 
+p {
+    font-family: "Kodchasan", sans-serif;
+}
+
 .title {
     font-family: sky;
     font-size: 100px;
@@ -135,8 +139,7 @@
 .weather-container{
     display: flex;
     margin: auto;
-    position: relative;
-    top: -50px;
+
 }
 
 .weather-col {
