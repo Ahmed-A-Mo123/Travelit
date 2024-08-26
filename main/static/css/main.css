@@ -156,6 +156,20 @@ p {
     
 }
 
+.chatgpt-container{
+    display: flex;
+    margin: auto;
+    position: relative;
+    top: 75px
+ }
+ 
+ .chatgpt-col {
+    border: 2px solid black;
+    margin: auto;
+    width: auto;
+    border-radius: 10px;
+ }
+
 /*---------------------------------------------------------------*/
 /*Loading-testpage.html */
 .loader {
