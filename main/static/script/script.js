@@ -1,5 +1,7 @@
 const gridItem1 = document.getElementById('grid-item-1')
 const gridItem2 = document.getElementById('grid-item-2')
+const gridItem3 = document.getElementById('grid-item-3')
+const gridItem4 = document.getElementById('grid-item-4')
 const expandButton1 = document.getElementById('expand-button-1')
 const expandButton2 = document.getElementById('expand-button-2')
 const expandButton3 = document.getElementById('expand-button-3')
@@ -60,28 +62,28 @@ function displayResults() {
 
 function displayWeather(data) {
 
-    const daylist = [data[1]['forecast']['forecastday'][0]['date'], // forcast date 1
-                     data[1]['forecast']['forecastday'][1]['date'], // forcast date 2
-                     data[1]['forecast']['forecastday'][2]['date']  // forcast date 3
+    const daylist = [data['forecast']['forecastday'][0]['date'], // forcast date 1
+                     data['forecast']['forecastday'][1]['date'], // forcast date 2
+                     data['forecast']['forecastday'][2]['date']  // forcast date 3
                     ]
 
     var day1 = getDayName(daylist[0]) // converts full date in the day
     var day2 = getDayName(daylist[1])
     var day3 = getDayName(daylist[2])
 
-    var day1Icon = data[1]['forecast']['forecastday'][0]['day']['condition']['icon']
-    var day2Icon = data[1]['forecast']['forecastday'][1]['day']['condition']['icon']
-    var day3Icon = data[1]['forecast']['forecastday'][2]['day']['condition']['icon']
+    var day1Icon = data['forecast']['forecastday'][0]['day']['condition']['icon']
+    var day2Icon = data['forecast']['forecastday'][1]['day']['condition']['icon']
+    var day3Icon = data['forecast']['forecastday'][2]['day']['condition']['icon']
     
-    var maxTemp1 = data[1]['forecast']['forecastday'][0]['day']['maxtemp_c']
-    var maxTemp2 = data[1]['forecast']['forecastday'][1]['day']['maxtemp_c']
-    var maxTemp3 = data[1]['forecast']['forecastday'][2]['day']['maxtemp_c']
+    var maxTemp1 = data['forecast']['forecastday'][0]['day']['maxtemp_c']
+    var maxTemp2 = data['forecast']['forecastday'][1]['day']['maxtemp_c']
+    var maxTemp3 = data['forecast']['forecastday'][2]['day']['maxtemp_c']
 
-    var conditionText1 = data[1]['forecast']['forecastday'][0]['day']['condition']['text']
-    var conditionText2 = data[1]['forecast']['forecastday'][1]['day']['condition']['text']
-    var conditionText3 = data[1]['forecast']['forecastday'][2]['day']['condition']['text']
+    var conditionText1 = data['forecast']['forecastday'][0]['day']['condition']['text']
+    var conditionText2 = data['forecast']['forecastday'][1]['day']['condition']['text']
+    var conditionText3 = data['forecast']['forecastday'][2]['day']['condition']['text']
 
-    console.log(data[1]['forecast']['forecastday'][0]['date'])
+    console.log(data['forecast']['forecastday'][0]['date'])
     const weatherGrid = document.createElement('div')
     weatherGrid.className = 'weather-container'
     
@@ -106,6 +108,19 @@ function displayWeather(data) {
 
 }
 
+function displayChatGPT() {
+    const chatGptOptions = document.createElement('div')
+    chatGptOptions.className = 'chatgpt-container'
+    
+    chatGptOptions.innerHTML = 
+                `<button type="button" class="btn btn-outline-primary chatgpt-col">Destinations Info</button>
+                <button type="button" class="btn btn-outline-primary chatgpt-col">Things To Do</button>
+                <button type="button" class="btn btn-outline-primary chatgpt-col">Best Time To Go</button>
+                <button type="button" class="btn btn-outline-primary chatgpt-col">Other Reconmended Places </button>
+                `
+    gridItem4.appendChild(chatGptOptions)
+}
+
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function main() {
@@ -121,93 +136,100 @@ function main() {
         userData.append('return_date', window.return_date);
 
 
-
-        Promise.all([
-
-            fetch('flights_request/', {
-                method: 'POST',
-                body: userData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest' } // Necessary for Django to recognize AJAX request
-            })
-                .then(response => response.json()).catch(error => ({ error })),
-            
-            fetch('weather_request/', {
-                method: 'POST',
-                body: userData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest' }
-            })
-                .then(response => response.json()).catch(error => ({ error })),
-
-            // fetch(url3).then(response => response.json()).catch(error => ({ error }))
-
-            
-        ])
-
-
-
-            .then(data => {
-                const [flightData, weatherData] = data;
-
-                if (flightData.error){
-                    console.log('Error with the flight data')
-                }
-                else {
-                    loader1.style.display = 'none';
-                    complete1.style.display = 'block';
-                    console.log('Data received from server:', flightData);
-                    console.log('FLIGHT DATA FINISHED LOADING');
-
-                    expandButton1.classList.remove('btn-outline-dark')
-                    expandButton1.classList.add('btn-outline-success')
-
-                    expandButton1.addEventListener('click', function() {
-                        console.log('ive been clicked');
-                        console.log(window.passengers);
-                        console.log(userData)
-                        displayResults();
-                    })
-
-                }
-
-                if (weatherData.error){
-                    console.log('Error with the weather data')
-                }
-                else {
-                    loader2.style.display = 'none';
-                    complete2.style.display = 'none' // Instead of a green tick display the results of the weather inside the div 
-                    console.log('Data received from server:', data);
-                    console.log('WEATHER DATA FINISHED LOADING');
-
-                    displayWeather(data)
-
-                }
-
-
-
-                // if (chatGptData.error){
-                //     console.log('Error with the chatGPT data')
-                // }
-
-
-
-
+        fetch('weather_request/', {
+            method: 'POST',
+            body: userData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Necessary for Django to recognize AJAX request
+            }
+        })
+        .then(response => response.json())
+        .then(weatherData => {
+            if (weatherData.error) {
+                console.log('Error with the weather data');
+            } else {
+                loader2.style.display = 'none';
+                complete2.style.display = 'none'; // Instead of a green tick display the results of the weather inside the div
+                console.log('Data received from server:', weatherData);
+                console.log('WEATHER DATA FINISHED LOADING');
         
-                
+                displayWeather(weatherData);
+            }
+        })
+        .catch(error => console.error('Fetch weather data error:', error));
+
+
+        // Flight Data Request
+        fetch('flights_request/', {
+            method: 'POST',
+            body: userData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Necessary for Django to recognize AJAX request
+            }
+        })
+        .then(response => response.json())
+        .then(flightData => {
+            if (flightData.error) {
+                console.log('Error with the flight data');
+            } else {
+                loader1.style.display = 'none';
+                complete1.style.display = 'block';
+                console.log('Data received from server:', flightData);
+                console.log('FLIGHT DATA FINISHED LOADING');
+
+                expandButton1.classList.remove('btn-outline-dark');
+                expandButton1.classList.add('btn-outline-success');
 
                 expandButton1.addEventListener('click', function() {
                     console.log('ive been clicked');
                     console.log(window.passengers);
-                    console.log(userData)
+                    console.log(userData);
                     displayResults();
-                })
-                
+                });
+            }
+        })
+        .catch(error => console.error('Fetch flight data error:', error));
 
-            }) 
-            // test if the api is returning correctly and everything is working in order.
-            .catch(error => console.error('Error:', error));
 
+        // ChatGpt reuest -- note may need to change how many request we make to the ai and then put in a list/dict to access it all at once here
+        fetch('chatGPT_request/', {
+            method: 'POST',
+            body: userData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Necessary for Django to recognize AJAX request
+            }
+        })
+        .then(response => response.json())
+        .then(ChatGPTData => {
+            if (ChatGPTData.error) {
+                console.log('Error with the weather data');
+            } else {
+                loader2.style.display = 'none';
+                complete2.style.display = 'none'; // Instead of a green tick display the results of the weather inside the div
+                console.log('Data received from server:', ChatGPTData);
+                console.log('WEATHER DATA FINISHED LOADING');
+        
+                displayChatGPT() 
+            }
+        })
+        .catch(error => console.error('Fetch weather data error:', error));
+
+
+
+        
+
+
+
+
+
+
+
+              //         expandButton1.addEventListener('click', function() {
+        //             console.log('ive been clicked');
+        //             console.log(window.passengers);
+        //             console.log(userData)
+        //             displayResults();
+        //         })
 
             expandButton3.addEventListener('click', function() {
                 console.log('ive been clicked');
