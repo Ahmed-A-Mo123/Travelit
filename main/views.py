@@ -1,7 +1,8 @@
 from django.http import HttpResponse 
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 from .forms import Search
 
 import logging
@@ -36,7 +37,8 @@ def home(request):
                 date_check.is_date_valid()
             except ValueError as e:
                 print({e})
-                return render(request, 'error.html', content)
+                messages.error(request, 'Check your dates, we are unable to provide flights flying today! ')
+                return redirect('/')
             
             return render(request, 'results.html', content)
 
